@@ -1,0 +1,237 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>D-Mind | The Action Engine</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        :root {
+            --bg-color: #050a14;
+            --primary-accent: #00d2ff;
+            --secondary-accent: #3a7bd5;
+            --text-color: #e2e8f0;
+            --card-bg: #111a2d;
+        }
+
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: 'Inter', sans-serif;
+            background-color: var(--bg-color);
+            color: var(--text-color);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+            overflow: hidden;
+        }
+
+        /* Ambient Glow Background */
+        .glow {
+            position: absolute;
+            width: 400px;
+            height: 400px;
+            background: radial-gradient(circle, rgba(0, 210, 255, 0.15) 0%, transparent 70%);
+            z-index: -1;
+            filter: blur(50px);
+        }
+
+        /* Branding */
+        .logo {
+            font-size: 3.5rem;
+            font-weight: 900;
+            background: linear-gradient(to right, var(--primary-accent), var(--secondary-accent));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            margin-bottom: 10px;
+            letter-spacing: -1px;
+        }
+
+        .greeting {
+            font-size: 1.2rem;
+            color: #94a3b8;
+            margin-bottom: 35px;
+            font-weight: 400;
+        }
+
+        /* Search Box Design */
+        .search-container {
+            width: 90%;
+            max-width: 750px;
+            position: relative;
+        }
+
+        .search-bar {
+            width: 100%;
+            padding: 20px 30px;
+            padding-left: 60px;
+            padding-right: 130px;
+            border-radius: 20px;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            background: var(--card-bg);
+            color: white;
+            font-size: 1.1rem;
+            outline: none;
+            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.4);
+        }
+
+        .search-bar:focus {
+            border-color: var(--primary-accent);
+            transform: scale(1.02);
+            box-shadow: 0 0 30px rgba(0, 210, 255, 0.2);
+        }
+
+        .search-icon {
+            position: absolute;
+            left: 22px;
+            top: 50%;
+            transform: translateY(-50%);
+            color: var(--primary-accent);
+            font-size: 1.4rem;
+        }
+
+        .input-tools {
+            position: absolute;
+            right: 20px;
+            top: 50%;
+            transform: translateY(-50%);
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+
+        .mic-icon {
+            color: #94a3b8;
+            font-size: 1.2rem;
+            cursor: pointer;
+            transition: 0.3s;
+        }
+
+        .mic-icon:hover {
+            color: #ff4b2b;
+        }
+
+        .btn-send {
+            background: linear-gradient(135deg, var(--primary-accent), var(--secondary-accent));
+            border: none;
+            padding: 8px 15px;
+            border-radius: 12px;
+            color: white;
+            cursor: pointer;
+            font-weight: 600;
+        }
+
+        /* Action Grid */
+        .action-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 15px;
+            margin-top: 40px;
+            width: 90%;
+            max-width: 750px;
+        }
+
+        .action-card {
+            background: rgba(255, 255, 255, 0.03);
+            border: 1px solid rgba(255, 255, 255, 0.05);
+            padding: 15px;
+            border-radius: 15px;
+            text-align: center;
+            cursor: pointer;
+            transition: 0.3s;
+        }
+
+        .action-card:hover {
+            background: rgba(0, 210, 255, 0.08);
+            border-color: var(--primary-accent);
+            transform: translateY(-5px);
+        }
+
+        .action-card i {
+            display: block;
+            font-size: 1.5rem;
+            margin-bottom: 8px;
+            color: var(--primary-accent);
+        }
+
+        .action-card span {
+            font-size: 0.85rem;
+            color: #cbd5e1;
+            font-weight: 500;
+        }
+
+        /* Footer */
+        .footer-brand {
+            position: absolute;
+            bottom: 30px;
+            letter-spacing: 2px;
+            font-size: 0.7rem;
+            text-transform: uppercase;
+            color: #475569;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="glow"></div>
+
+    <div class="logo">D-MIND</div>
+    
+    <div class="greeting" id="greetingText">Hello, how can I help you today?</div>
+
+    <div class="search-container">
+        <i class="fa-solid fa-atom search-icon"></i>
+        <input type="text" id="mainSearch" class="search-bar" placeholder="Ask anything or take an action...">
+        <div class="input-tools">
+            <i class="fa-solid fa-microphone mic-icon"></i>
+            <button class="btn-send">GO</button>
+        </div>
+    </div>
+
+    <div class="action-grid">
+        <div class="action-card">
+            <i class="fa-solid fa-bolt-lightning"></i>
+            <span>Live Agent</span>
+        </div>
+        <div class="action-card">
+            <i class="fa-solid fa-brain"></i>
+            <span>Deep Search</span>
+        </div>
+        <div class="action-card">
+            <i class="fa-solid fa-lock"></i>
+            <span>Privacy Vault</span>
+        </div>
+    </div>
+
+    <div class="footer-brand">The Decentralized Intelligence Engine</div>
+
+    <script>
+        // Logic to get User Name
+        window.onload = function() {
+            let userName = localStorage.getItem('dmind_user');
+            
+            if (!userName) {
+                userName = prompt("Welcome to D-Mind! Please enter your name:");
+                if (userName) {
+                    localStorage.setItem('dmind_user', userName);
+                } else {
+                    userName = "Guest";
+                }
+            }
+            
+            document.getElementById('greetingText').innerText = `Hello, ${userName}. What's the plan today?`;
+        };
+
+        // Search Trigger
+        document.getElementById('mainSearch').addEventListener('keypress', function (e) {
+            if (e.key === 'Enter') {
+                const query = this.value;
+                alert('D-Mind is processing: ' + query);
+            }
+        });
+    </script>
+</body>
+</html>
